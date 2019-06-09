@@ -9,191 +9,130 @@
     <title>Document</title>
 
     <style>
-        html, body {
-          position: relative;
-          height: 100%;
-        }
-        body {
-          background: #eee;
-          font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-          font-size: 14px;
-          color:#000;
-          margin: 0;
-          padding: 0;
-        }
-        .swiper-container {
-          width: 100%;
-          height: 100%;
-        }
-        .swiper-slide {
-          text-align: center;
-          font-size: 18px;
-          background: #fff;
-          /* Center slide text vertically */
-          display: -webkit-box;
-          display: -ms-flexbox;
-          display: -webkit-flex;
-          display: flex;
-          -webkit-box-pack: center;
-          -ms-flex-pack: center;
-          -webkit-justify-content: center;
-          justify-content: center;
-          -webkit-box-align: center;
-          -ms-flex-align: center;
-          -webkit-align-items: center;
-          align-items: center;
-        }
+ 
 
-        /* Swiper buttons */
+#slider{
+	height:500px;
+	width:700px;
+	overflow:hidden;
+	margin:50px auto;
+}
 
-        .swiper-button-prev {
-            display: none;
-        }
+#slider ul{
+	list-style-type:none;
+	position:relative;
+	height:500px;
+	width:2800px;
+	margin:0;
+	padding:0;
+	margin-left:-700px;
+}
 
-        .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets
-        {
-            top: 0;
-            right: 100px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            height: 100%;
-            width: auto !important;
-            left: auto;
-        }
+#slider ul li{
+	height:500px;
+	width:700px;
+	margin:0;
+	padding:0;
+	display:block;
+	float:left;
+}
 
 
-        .main-pic {
+
+.slideButton{
+	position:relative;
+	height:70px;
+	width:70px;
+	z-index:999;
+	background-color:#F6F7F8;
+	color:#FCC059;
+	border:0px;
+}
+
+
+#buttonright{
+	top:250px;
+	left:557px;
+}
+
+
+.main-pic.active {
     background-image: url("omg.png");
-    width: 0%;
     background-size: 100% 100%;
     transform-origin: center;
-    opacity: 0;
     height: 100%;
     width: 100%;
+    opacity: 0;
     position: relative;
-    animation: grow-pic .5s  ease-in-out forwards;
+    animation: grow-pic .7s  ease-in-out forwards;
 }
 
-.main-pic::after {
+.main-pic.active::after {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     content: "";
     background: #222E46;
-    animation: bg-grow .5s  ease-in-out forwards;
+    animation: bg-grow .7s  ease-in-out forwards;
 }
 
 @keyframes bg-grow{
     0%{ width:0%; opacity: 1;}
-    50% {width:0%; opacity: .73;}
     100%{width:100%; opacity: .3;}
 }
 
 @keyframes grow-pic {
     0%{  
-        
-          clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);opacity: 0;
+        transform:scale(1.2);
+        opacity: 0;
     }
     100%{ 
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);opacity: 1; 
-        
-
+        transform:scale(1.0);
+        opacity: 1; 
     }
 }
 
-
-.slide-2 {
-    background-image: url("omg-3.png");
-    width: 0%;
-    background-size: 100% 100%;
-    transform-origin: center;
-    opacity: 0;
-    height: 100%;
-    width: 100%;
-    position: relative;
-    animation: grow-pic .5s 2s ease-in-out forwards;
-}
-
-.slide-2::after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    content: "";
-    background: #222E46;
-    animation: bg-grow .5s 2.1s ease-in-out forwards;
-}
-
-@keyframes bg-grow{
-    0%{ width:0%; opacity: 1;}
-    50% {width:0%; opacity: .73;}
-    100%{width:100%; opacity: .3;}
-}
-
-@keyframes grow-pic {
-    0%{  
-        
-          clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);opacity: 0;
-    }
-    100%{ 
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);opacity: 1; 
-        
-
-    }
-}
 </style>
 
 </head>
 <body>
     
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="main-pic slide-1">
-                
-            </div>
+          <div id="slider">
+            <button class="slideButton" id="buttonright">>></button>
+            <ul>
+              <li class="type1 main-pic "></li>
+              <li class="type2 main-pic active"></li>
+              <li class="type3 main-pic"></li>
+              <li class="type4 main-pic"></li>
+            </ul>
           </div>
-          <div class="swiper-slide"> 
-              <div class="slide-2">
-                        
-                </div>
-            </div>
-          <div class="swiper-slide">Slide 3</div>
-        </div>
-        <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
-        <!-- Add Arrows -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-      </div>
-
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.js"></script>
     <script>
-        var swiper = new Swiper('.swiper-container', {
-          spaceBetween: 30,
-          centeredSlides: true,
-          loop: true,
-          allowSlidePrev: false,
-          autoplay: {
-            delay: 2000,
-            disableOnInteraction: false,
-          },
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-          },
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
-        });
+
+
+        $(function(){
+			
+	$("#buttonright").click(function(){
+		moveRight();
+	});
+	
+	function moveRight()
+	{	
+		$("#slider ul").animate({left: "700px"},500,function(){
+      $("#slider ul").css("left","0");
+      $("#slider ul li:first-child").appendTo("#slider ul");
+      var cur = $('.active');
+      $('#slider ul li').removeClass('active');
+      cur.next().addClass('active');
+			$("#slider ul").css("left","0");
+		});
+	}
+});
       </script>
 </body>
 </html>
